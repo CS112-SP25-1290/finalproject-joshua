@@ -1,4 +1,4 @@
-package edu.miracosta.cs112.finalproject.finalproject;
+package edu.miracosta.cs112.finalproject;
 
 public abstract class Account {
     private String accountNumber;

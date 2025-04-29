@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.miracosta.cs112.finalproject.MainController"
+            prefWidth="1000" prefHeight="700">
+
+    <!-- TOP HEADER: Menu + Welcome -->
+    <top>
+        <VBox>
+
+            <!-- Application Menu -->
+            <MenuBar>
+                <Menu text="Accounts">
+                    <MenuItem text="Overview"/>
+                    <MenuItem text="Open New Account"/>
+                </Menu>
+                <Menu text="Transactions">
+                    <MenuItem text="Deposit"/>
+                    <MenuItem text="Withdraw"/>
+                    <MenuItem text="Transfer Funds"/>
+                </Menu>
+                <Menu text="Reports">
+                    <MenuItem text="Monthly Statement"/>
+                    <MenuItem text="Tax Documents"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About"/>
+                    <MenuItem text="Support"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- Welcome banner -->
+            <HBox spacing="10" alignment="CENTER_RIGHT"
+                  style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
+                <Label fx:id="userNameLabel"
+                       text="Welcome back, Joshua"
+                       style="-fx-font-size: 14px;"/>
+                <Button fx:id="logoutBtn" text="Log off" onAction="#onLogout"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- LEFT NAV: Account Cards -->
+    <left>
+        <VBox fx:id="accountList" spacing="10"
+              style="-fx-padding: 10; -fx-background-color: #fafafa; -fx-border-color: #ddd;">
+            <Label text="Accounts" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+            <!-- these will be populated in the controller -->
+        </VBox>
+    </left>
+
+    <!-- CENTER: TabPane with Dashboard / other tabs -->
+    <center>
+        <TabPane fx:id="mainTabPane">
+
+            <!-- Dashboard Tab -->
+            <tabs>
+                <Tab text="Dashboard">
+                    <ScrollPane fitToWidth="true">
+                        <VBox spacing="20" style="-fx-padding: 15;">
+
+                            <!-- 1. Summary Cards Row -->
+                            <HBox spacing="20">
+                                <VBox alignment="CENTER"
+                                      style="-fx-border-color:#ccc; -fx-background-color:white; -fx-padding:15; -fx-background-radius:4;">
+                                    <Label text="Total Value" style="-fx-font-size:12px;"/>
+                                    <Label fx:id="totalValueLabel" text="0.00"
+                                           style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+                                </VBox>
+                                <VBox alignment="CENTER"
+                                      style="-fx-border-color:#ccc; -fx-background-color:white; -fx-padding:15; -fx-background-radius:4;">
+                                    <Label text="Checking" style="-fx-font-size:12px;"/>
+                                    <Label fx:id="checkingBalanceLabel" text="0.00"
+                                           style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                                </VBox>
+                                <VBox alignment="CENTER"
+                                      style="-fx-border-color:#ccc; -fx-background-color:white; -fx-padding:15; -fx-background-radius:4;">
+                                    <Label text="Savings" style="-fx-font-size:12px;"/>
+                                    <Label fx:id="savingsBalanceLabel" text="0.00"
+                                           style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                                </VBox>
+                                <VBox alignment="CENTER"
+                                      style="-fx-border-color:#ccc; -fx-background-color:white; -fx-padding:15; -fx-background-radius:4;">
+                                    <Label text="Credit Card" style="-fx-font-size:12px;"/>
+                                    <Label fx:id="creditBalanceLabel" text="0.00"
+                                           style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                                </VBox>
+                            </HBox>
+
+                            <!-- 2. Line Chart -->
+                            <Label text="Balance Over Time"
+                                   style="-fx-font-size:14px; -fx-underline:true;"/>
+                            <LineChart fx:id="lineChart" prefHeight="200">
+                                <xAxis>
+                                    <NumberAxis fx:id="xAxis" label="Quarter"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="yAxis" label="Value"/>
+                                </yAxis>
+                            </LineChart>
+
+                            <!-- 3. Recent Transactions Table -->
+                            <Label text="Recent Transactions"
+                                   style="-fx-font-size:14px; -fx-underline:true;"/>
+                            <TableView fx:id="transactionTable" prefHeight="200">
+                                <columns>
+                                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+                                    <TableColumn fx:id="amountColumn" text="Amount" prefWidth="100"/>
+                                    <TableColumn fx:id="accountColumn" text="Account" prefWidth="120"/>
+                                </columns>
+                            </TableView>
+
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- Placeholder Tabs -->
+                <Tab text="Transactions">
+                    <Label text="Transactions view (coming soon)" />
+                </Tab>
+                <Tab text="Performance">
+                    <Label text="Performance view (coming soon)" />
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <!-- BOTTOM: Action Bar -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER"
+              style="-fx-padding:15; -fx-background-color:#f8f8f8; -fx-border-color:#ddd;">
+            <TextField fx:id="amountField" promptText="Amount" prefWidth="120"/>
+            <Button fx:id="depositBtn"   text="Deposit"   onAction="#onDeposit"/>
+            <Button fx:id="withdrawBtn"  text="Withdraw"  onAction="#onWithdraw"/>
+            <Button fx:id="transferBtn"  text="Transfer"  onAction="#onTransfer"/>
+            <Button fx:id="settingsBtn"  text="Settings"  onAction="#onSettings"/>
+        </HBox>
+    </bottom>
+</BorderPane>

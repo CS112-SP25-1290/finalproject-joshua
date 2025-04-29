@@ -1,4 +1,4 @@
-package edu.miracosta.cs112.finalproject.finalproject;
+package edu.miracosta.cs112.finalproject;
 
 /**
  * A concrete class representing a checking account.

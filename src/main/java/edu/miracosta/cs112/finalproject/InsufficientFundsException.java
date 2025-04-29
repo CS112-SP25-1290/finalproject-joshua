@@ -1,4 +1,4 @@
-package edu.miracosta.cs112.finalproject.finalproject;
+package edu.miracosta.cs112.finalproject;
 
 public class InsufficientFundsException extends Exception {
     public InsufficientFundsException(String message) {

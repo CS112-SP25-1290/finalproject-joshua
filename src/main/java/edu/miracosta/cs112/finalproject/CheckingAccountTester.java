@@ -1,4 +1,4 @@
-package edu.miracosta.cs112.finalproject.finalproject;
+package edu.miracosta.cs112.finalproject;
 
 /**
  * Tester class for the CheckingAccount.
@@ -22,4 +22,3 @@ public class CheckingAccountTester {
         }
     }
 }
-
